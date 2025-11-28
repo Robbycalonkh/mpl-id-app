@@ -14,6 +14,7 @@ const TeamDetail = () => {
   const [error, setError] = useState(null);
   const [successModal, setSuccessModal] = useState(false);
   
+  // State awal null, akan diisi saat loadTeam selesai
   const [formData, setFormData] = useState(null);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const TeamDetail = () => {
       setLoading(true);
       const data = await fetchTeamById(id);
       
+      // Mapping data pemain untuk form
       const players = [
         { ign: data.member1 || '', role: 'EXP Laner' },
         { ign: data.member2 || '', role: 'Jungler' },
@@ -36,6 +38,7 @@ const TeamDetail = () => {
         { ign: data.member5 || '', role: 'Roamer' },
       ];
       
+      // Mapping data coach
       const coaches = [
         { name: data.coach || '', role: 'Head Coach' }
       ];
@@ -45,7 +48,12 @@ const TeamDetail = () => {
         region: data.region || '', 
         logo: data.logo || '',     
         players: players,
-        coaches: coaches
+        coaches: coaches,
+        // PERBAIKAN 1: Pastikan statistik masuk ke state (Default 0 jika null)
+        matchesWon: data.matchesWon || 0,
+        matchesLost: data.matchesLost || 0,
+        gamesWon: data.gamesWon || 0,
+        gamesLost: data.gamesLost || 0,
       });
       
       setError(null);
@@ -62,7 +70,10 @@ const TeamDetail = () => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      // PERBAIKAN 2: Jika input adalah statistik, ubah jadi integer agar tidak error di database
+      [name]: (name.includes('matches') || name.includes('games')) 
+        ? parseInt(value) || 0 
+        : value
     }));
   };
 
@@ -90,6 +101,7 @@ const TeamDetail = () => {
     try {
       setSaving(true);
       
+      // Siapkan payload data untuk dikirim ke API
       const apiData = {
         name: formData.name,
         logo: formData.logo || '',
@@ -102,6 +114,12 @@ const TeamDetail = () => {
         member3: formData.players[2]?.ign || '',
         member4: formData.players[3]?.ign || '',
         member5: formData.players[4]?.ign || '',
+
+        // PERBAIKAN 3: Sertakan data statistik dalam request update
+        matchesWon: formData.matchesWon,
+        matchesLost: formData.matchesLost,
+        gamesWon: formData.gamesWon,
+        gamesLost: formData.gamesLost,
       };
 
       await updateTeam(id, apiData);
@@ -117,6 +135,7 @@ const TeamDetail = () => {
 
   const handleSuccessModalClose = () => {
     setSuccessModal(false);
+    // Redirect kembali ke halaman teams dan trigger reload
     navigate('/teams', { state: { reload: true, timestamp: Date.now() } });
   };
 
@@ -198,6 +217,54 @@ const TeamDetail = () => {
             </div>
           </div>
 
+          {/* --- PERBAIKAN 4: UI Section Statistics --- */}
+          <div className="form-section">
+            <h3 className="section-title">Team Statistics</h3>
+            
+            <div className="form-grid-2">
+              <div className="form-group">
+                <label>Match Won</label>
+                <input
+                  type="number"
+                  name="matchesWon"
+                  value={formData.matchesWon}
+                  onChange={handleChange}
+                  min="0"
+                />
+              </div>
+              <div className="form-group">
+                <label>Match Lost</label>
+                <input
+                  type="number"
+                  name="matchesLost"
+                  value={formData.matchesLost}
+                  onChange={handleChange}
+                  min="0"
+                />
+              </div>
+              <div className="form-group">
+                <label>Game Won</label>
+                <input
+                  type="number"
+                  name="gamesWon"
+                  value={formData.gamesWon}
+                  onChange={handleChange}
+                  min="0"
+                />
+              </div>
+              <div className="form-group">
+                <label>Game Lost</label>
+                <input
+                  type="number"
+                  name="gamesLost"
+                  value={formData.gamesLost}
+                  onChange={handleChange}
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* --- Players Section --- */}
           <div className="form-section">
             <h3 className="section-title">Active Roster</h3>
@@ -211,7 +278,7 @@ const TeamDetail = () => {
                     value={player.role}
                     readOnly
                     className="input-readonly"
-                    tabIndex="-1" // Skip focus
+                    tabIndex="-1" 
                   />
                 </div>
                 <div className="form-group">
@@ -272,7 +339,7 @@ const TeamDetail = () => {
         onConfirm={handleSuccessModalClose}
         type="success"
         title="Team Updated!"
-        message={`"${formData?.name}" has been successfully updated.`}
+        message={`${formData?.name} has been successfully updated.`}
         confirmText="Go to Teams"
         cancelText="Close"
       />
