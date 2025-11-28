@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchTeams, deleteTeam } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Modal from '../components/Modal';
-import './Teams.css';
+import '../styles/pages/Teams.css';
 
 const Teams = () => {
   const [teams, setTeams] = useState([]);

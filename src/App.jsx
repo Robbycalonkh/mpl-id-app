@@ -40,6 +40,10 @@ function App() {
           <Route path="mvp" element={<MVP />} />
           <Route path="mvp/create" element={<CreateMVP />} />
           <Route path="mvp/edit/:id" element={<EditMVP />} />
+          <Route path="profile" element={<Profile />} />
+          
+          {/* Profile */}
+          <Route path="profile" element={<Profile />} />
           
           {/* Fallback 404 */}
           <Route path="*" element={<div style={{color:'white', textAlign:'center', padding:'5rem'}}>404 - Page Not Found</div>} />

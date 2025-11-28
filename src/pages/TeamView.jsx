@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchTeamById } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
-import './TeamView.css';
+import '../styles/pages/TeamView.css';
 
 const TeamView = () => {
   const { id } = useParams();

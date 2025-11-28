@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchTeams } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
-import './Standings.css';
+import '../styles/pages/Standings.css';
 
 const Standings = () => {
   const [teams, setTeams] = useState([]);

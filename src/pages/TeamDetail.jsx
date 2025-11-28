@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { fetchTeamById, updateTeam } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Modal from '../components/Modal';
-import './TeamDetail.css';
+import '../styles/pages/TeamDetail.css';
 
 const TeamDetail = () => {
   const { id } = useParams();

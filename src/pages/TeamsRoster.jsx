@@ -2,7 +2,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchTeams } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
-import './TeamsRoster.css';
+import '../styles/pages/TeamsRoster.css';
 
 const TeamsRoster = () => {
   const [teams, setTeams] = useState([]);

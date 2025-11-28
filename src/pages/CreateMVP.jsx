@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createMVP } from '../services/mvpApi';
 import Modal from '../components/Modal';
-import './CreateMVP.css';
+import '../styles/pages/CreateMVP.css';
 
 const CreateMVP = () => {
   const navigate = useNavigate();

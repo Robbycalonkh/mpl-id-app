@@ -3,7 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { updateMVP } from '../services/mvpApi';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Modal from '../components/Modal';
-import './EditMVP.css';
+import '../styles/pages/EditMVP.css';
 
 const EditMVP = () => {
   const { id } = useParams();

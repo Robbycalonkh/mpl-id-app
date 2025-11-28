@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createTeam } from '../services/api';
 import Modal from '../components/Modal';
-import './CreateTeam.css';
+import '../styles/pages/CreateTeam.css';
 
 const CreateTeam = () => {
   const navigate = useNavigate();

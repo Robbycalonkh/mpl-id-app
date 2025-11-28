@@ -1,7 +1,7 @@
 import React from 'react';
-import './Modal.css';
+import '../styles/components/Modal.css';
 
-const Modal = ({ 
+const Modal = ({  
   isOpen, 
   onClose, 
   onConfirm, 

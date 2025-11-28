@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchMVPs, deleteMVP } from '../services/mvpApi';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Modal from '../components/Modal';
-import './MVP.css';
+import '../styles/pages/MVP.css';
 
 const MVP = () => {
   const [mvps, setMvps] = useState([]);
