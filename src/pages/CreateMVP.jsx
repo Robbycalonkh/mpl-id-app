@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createMVP } from '../services/mvpApi';
+import { createMVP } from '../services/api';
 import Modal from '../components/Modal';
 import '../styles/pages/CreateMVP.css';
 

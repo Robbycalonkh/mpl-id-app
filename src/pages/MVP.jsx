@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { fetchMVPs, deleteMVP } from '../services/mvpApi';
+import { fetchMVPs, deleteMVP } from '../services/api';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Modal from '../components/Modal';
 import '../styles/pages/MVP.css';

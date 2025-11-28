@@ -144,7 +144,7 @@ export default defineConfig({
     open: true,
     proxy: {
       '/api': {
-        target: 'https://api-mpl.vercel.app',
+        target: 'https://api-mpl-indonesia-s16.vercel.app',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '/api')

@@ -4,7 +4,7 @@ import '../styles/pages/Profile.css';
 const Profile = () => {
   // Static data for now
   const user = {
-    name: 'Admin User',
+    name: 'Robby Ferliansyah Bahar',
     role: 'League Administrator',
     email: 'admin@mpl-id.com',
     joinDate: 'January 2024',
