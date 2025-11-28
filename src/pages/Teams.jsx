@@ -57,7 +57,7 @@ const Teams = () => {
   };
 
   const handleEdit = (e, id) => {
-    e.stopPropagation(); // Mencegah klik kartu saat tombol edit diklik
+    e.stopPropagation();
     navigate(`/team/edit/${id}`);
   };
 
